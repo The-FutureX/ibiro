@@ -1,15 +1,17 @@
 import React from 'react';
 
+import logo from '../assets/img/logo/logo.png';
+import footer_bg from '../assets/img/bg/footer-bg-3.jpg';
 export default function Footer() {
     return <div>
-        <footer style={{ backgroundImage: "url(assets/img/bg/footer-bg-3.jpg)" }}>
+        <footer style={{ backgroundImage: `url(${footer_bg})` }}>
             <div className="footer-area footer-3 pb-60 pt-100">
             <div className="container">
                 <div className="row">
                 <div className="col-xl-4 col-lg-4 col-md-6">
                     <div className="footer-widget mb-40">
                     <div className="footer-logo mb-25">
-                        <img src="assets/img/logo/logo.png" alt="" />
+                        <img src={logo} alt="" />
                     </div>
                     <div className="social-icon mb-20">
                         <a href="#">

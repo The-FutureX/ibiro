@@ -20,18 +20,18 @@ const DisplayCampaigns = ({ title, isLoading, campaigns }) => {
                             <p>
                                 <span /> {title}  ({campaigns.length})
                             </p>
-                            <h1>Invest Now Before Time expires</h1>
+                            {/*<h2>Invest Now Before Time expires</h2>*/}
                         </div>
                     </div>
                 </div>
                 <div className="row">
                     {isLoading && (
-                        <img src={loader} alt="loader" className="w-[100px] h-[100px] object-contain" />
+                        <img src={loader} alt="loader" className="object-contain" />
                     )}
 
                     {!isLoading && campaigns.length === 0 && (
-                        <p className="font-epilogue font-semibold text-[14px] leading-[30px] text-[#818183]">
-                            You have not created any campigns yet
+                        <p className="">
+                            No Campaign created.
                         </p>
                     )}
 

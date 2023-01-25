@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import { ConnectWallet } from "@thirdweb-dev/react";
 
 import { Header, Footer } from './components';
-import { CampaignDetails, CreateCampaign, Home, Profile } from './pages';
+import { Campaigns, CampaignDetails, CreateCampaign, Home, Profile } from './pages';
 
 export default function App() {
   return (
@@ -17,6 +17,7 @@ export default function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/profile" element={<Profile />} />
+      <Route path="/campaigns" element={<Campaigns />} />
       <Route path="/create-campaign" element={<CreateCampaign />} />
       <Route path="/campaign-details/:id" element={<CampaignDetails />} />
     </Routes>

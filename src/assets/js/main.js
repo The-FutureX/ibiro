@@ -241,7 +241,7 @@ $.scrollUp({
 });
 
 // WOW active
-new WOW().init();
+// new WOW().init();
 
 // countdown
 $('[data-countdown]').each(function () {

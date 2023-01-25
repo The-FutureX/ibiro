@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react'
 
 import { DisplayCampaigns } from '../components';
 import { useStateContext } from '../context'
-import HerorArea from '../components/HeroArea';
+import HeroArea from '../components/HeroArea';
 import FeatureArea from '../components/FeatureArea';
+import HowItWorks from "../components/HowItWorks";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
@@ -25,19 +26,19 @@ export default function Home() {
     return <div>
         <main>
             {/* hero-area start */}
-            <HerorArea />
-            {/* hero-area end */}
+            <HeroArea />
             {/* features-area start */}
-            {/* <FeatureArea /> */}
+            <FeatureArea />
             {/* features-area end */}
-            {/* causes-area start */}
-        
+            <HowItWorks />
+            {/* hero-area end */}
+            {/* campaign start */}
             <DisplayCampaigns
-            title="All Campaigns"
+            title="Popular Campaigns"
             isLoading={isLoading}
             campaigns={campaigns}
             />
-            {/* causes-area end */}
+            {/* campaign end */}
         </main>
     </div>;
 }

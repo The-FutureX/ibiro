@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { tagType, thirdweb } from '../assets';
-import { daysLeft } from '../utils';
+import { daysLeft,calculateBarPercentage } from '../utils';
 
 const FundCard = ({ owner, title, description, target, deadline, amountCollected, image, handleClick }) => {
     const remainingDays = daysLeft(deadline);
@@ -19,7 +19,7 @@ const FundCard = ({ owner, title, description, target, deadline, amountCollected
                 </div>
                 <div className="causes__caption">
                     <div className="causes-tag mb-20">
-                        <a href="#">Technology</a>
+                        <a href="#">Category</a>
                     </div>
                     <h4>
                         <a href="#" onClick={handleClick}>
@@ -27,22 +27,23 @@ const FundCard = ({ owner, title, description, target, deadline, amountCollected
                         </a>
                     </h4>
                     <div className="causes-progress mb-25">
-                        {/*<div className="progress">*/}
-                        {/*    <div*/}
-                        {/*        className="progress-bar w-75"*/}
-                        {/*        role="progressbar"*/}
-                        {/*        aria-valuenow={60}*/}
-                        {/*        aria-valuemin={0}*/}
-                        {/*        aria-valuemax={100}*/}
-                        {/*    />*/}
-                        {/*</div>*/}
+                        <div className="progress">
+                            <div
+                                className="progress-bar"
+                                style={{ width: `${calculateBarPercentage(target, amountCollected)}%`, maxWidth: '100%'}}
+                                role="progressbar"
+                                aria-valuenow={calculateBarPercentage(target, amountCollected)}
+                                aria-valuemin={0}
+                                aria-valuemax={100}
+                            />
+                        </div>
                         <div className="causes-count mt-15 fix">
                             <div className="count-number f-left text-left">
-                                <h2>{amountCollected}</h2>
+                                <h2>{amountCollected} Eth</h2>
                                 <span>Pledged</span>
                             </div>
                             <div className="count-number f-right text-right">
-                                <h2>{target}</h2>
+                                <h2>{target} Eth</h2>
                                 <span>Target</span>
                             </div>
                         </div>

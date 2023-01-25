@@ -5,11 +5,18 @@ import { useStateContext } from '../context';
 import { truncate } from '../utils';
 import { ConnectWalletButton } from './ConnectWalletButton';
 
+import logo from '/src/logo.png';
+
 export default function Header() {
     const navigate = useNavigate();
     // const [isActive, setIsActive] = useState('dashboard');
     // const [toggleDrawer, setToggleDrawer] = useState(false);
     const { connect, address } = useStateContext();
+    const profile = () => {
+        if (address){
+            return <li><Link to="profile">Profile</Link></li>
+        }
+    }
     return (
         <div>
             <header className="header">
@@ -18,8 +25,8 @@ export default function Header() {
                     <div className="row">
                     <div className="col-xl-2 col-lg-2 col-md-3 col-6 d-flex align-items-center">
                         <div className="header__logo">
-                        <a href="index.html">
-                            <img src="assets/img/logo/logo.png" alt="" />
+                        <a href="/">
+                            <img src={logo} alt="logo" />
                         </a>
                         </div>
                     </div>
@@ -31,7 +38,7 @@ export default function Header() {
                                     <Link to="/">Home</Link>
                                 </li>
                                 <li>
-                                    <Link to="/">Campaigns</Link>
+                                    <Link to="/campaigns">Campaigns</Link>
                                 </li>
                                 <li>
                                     <a href="#"
@@ -43,6 +50,7 @@ export default function Header() {
                                         {address ? 'start campaign' : ''}
                                     </a>
                                 </li>
+                                {profile()}
                                 <li>
                                     <ConnectWalletButton className="login-btn theme-bg" />
                                 </li>
