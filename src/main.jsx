@@ -1,13 +1,15 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import {BrowserRouter as Router} from "react-router-dom"
+import $ from 'jquery';
 
 import { StateContextProvider } from './context';
 import App from "./App";
 import { ChainId, ThirdwebProvider } from "@thirdweb-dev/react";
 
 //Import CSS
-import './assets/css/bootstrap.min.css';
+// import './assets/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import "./assets/css/owl.carousel.min.css";
 import "./assets/css/animate.min.css";
 import "./assets/css/magnific-popup.css";
@@ -17,7 +19,6 @@ import "./assets/css/meanmenu.css";
 import "./assets/css/slick.css";
 import "./assets/css/style.css";
 import "./assets/css/responsive.css";
-import "./styles/style.css";
 
 // Import JS
 // import "./assets/js/vendor/jquery-1.12.4.min.js";
@@ -27,7 +28,7 @@ import "./styles/style.css";
 // import "./assets/js/slick.min.js";
 // import "./assets/js/jquery.meanmenu.min.js";
 // import "./assets/js/ajax-form.js";
-// // import "./assets/js/wow.min.js";
+// import "./assets/js/wow.min.js";
 // import "./assets/js/jquery.scrollUp.min.js";
 // import "./assets/js/imagesloaded.pkgd.min.js";
 // import "./assets/js/jquery.magnific-popup.min.js";

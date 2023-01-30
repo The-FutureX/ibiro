@@ -2,7 +2,8 @@
 Website: http://ibiro-app.netlify.com
 <br />
 Smart Contract: https://github.com/The-FutureX/ibiro
-## Use Goerli Network to test
+
+## NOTE: Use Goerli Network to test & Pinata for image url
 
 ## Building the project
 

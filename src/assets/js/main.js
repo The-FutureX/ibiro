@@ -29,72 +29,6 @@ $("[data-background]").each(function () {
 	$(this).css("background-image", "url(" + $(this).attr("data-background") + ")")
 })
 
-
-
-// mainSlider
-function mainSlider() {
-	var BasicSlider = $('.slider-active');
-	BasicSlider.on('init', function (e, slick) {
-		var $firstAnimatingElements = $('.single-slider:first-child').find('[data-animation]');
-		doAnimations($firstAnimatingElements);
-	});
-	BasicSlider.on('beforeChange', function (e, slick, currentSlide, nextSlide) {
-		var $animatingElements = $('.single-slider[data-slick-index="' + nextSlide + '"]').find('[data-animation]');
-		doAnimations($animatingElements);
-	});
-	BasicSlider.slick({
-		autoplay: false,
-		autoplaySpeed: 10000,
-		dots: true,
-		fade: true,
-		arrows: false,
-		responsive: [
-			{
-				breakpoint: 1200,
-				settings: {
-					slidesToShow: 1,
-					slidesToScroll: 1,
-					dots: false
-				}
-			},
-			{
-				breakpoint: 991,
-				settings: {
-					slidesToShow: 1,
-					slidesToScroll: 1,
-					dots: false
-				}
-			},
-			{
-				breakpoint: 480,
-				settings: {
-					slidesToShow: 1,
-					slidesToScroll: 1,
-					dots: false
-				}
-			}
-		]
-	});
-
-	function doAnimations(elements) {
-		var animationEndEvents = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
-		elements.each(function () {
-			var $this = $(this);
-			var $animationDelay = $this.data('delay');
-			var $animationType = 'animated ' + $this.data('animation');
-			$this.css({
-				'animation-delay': $animationDelay,
-				'-webkit-animation-delay': $animationDelay
-			});
-			$this.addClass($animationType).one(animationEndEvents, function () {
-				$this.removeClass($animationType);
-			});
-		});
-	}
-}
-mainSlider();
-
-
 // owlCarousel
 $('.brand-active').owlCarousel({
     loop:true,
@@ -228,6 +162,10 @@ $('.portfolio-menu button').on('click', function(event) {
 	event.preventDefault();
 });
 
+$("a").on("click", function (){
+	alert("Clicked");
+})
+
 // scrollToTop
 $.scrollUp({
 	scrollName: 'scrollUp', // Element ID
@@ -328,21 +266,5 @@ function basicmap() {
 if ($('#contact-map').length != 0) {
 	google.maps.event.addDomListener(window, 'load', basicmap);
 }
-
-	// Instafeed
-	// Instafeed
-	if ($("#Instafeed").length) {
-		var feed = new Instafeed({
-			get: 'user',
-			userId: 10004252607,
-			accessToken: '10004252607.1677ed0.afb55516e4354f0181daa4bee86a9919',
-			target: 'Instafeed',
-			resolution: 'thumbnail',
-			limit: 9,
-			template: '<li><a href="{{link}}" target="_new"><img src="{{image}}" /></a></li>',
-		});
-		feed.run();
-	}
-
 
 })(jQuery);

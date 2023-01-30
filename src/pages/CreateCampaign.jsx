@@ -4,7 +4,7 @@ import { ethers } from 'ethers';
 
 import { useStateContext } from '../context';
 import { money } from '../assets';
-import { FormField } from '../components';
+import { FormField,Loader } from '../components';
 import { checkIfImage } from '../utils';
 
 export default function CreateCampaign() {
@@ -43,6 +43,10 @@ export default function CreateCampaign() {
   return (
     <div>
         <main>
+          {isLoading && <Loader />}
+          <div className="flex justify-center items-center p-[16px] sm:min-w-[380px] bg-[#3a3a43] rounded-[10px]">
+            <h1 className="font-epilogue font-bold sm:text-[25px] text-[18px] leading-[38px] text-white">Start a Campaign</h1>
+          </div>
         {/* page-title-area start */}
         <section
           className="page-title-area pt-50 pb-50"
