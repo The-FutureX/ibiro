@@ -32,7 +32,7 @@ export default function CreateCampaign() {
         setIsLoading(true)
         await createCampaign({ ...form, target: ethers.utils.parseUnits(form.target, 18)})
         setIsLoading(false);
-        navigate('/');
+        // navigate('/');
       } else {
         alert('Provide valid image URL')
         setForm({ ...form, image: '' });
@@ -43,7 +43,6 @@ export default function CreateCampaign() {
   return (
     <div>
         <main>
-          {isLoading && <Loader />}
           <div className="flex justify-center items-center p-[16px] sm:min-w-[380px] bg-[#3a3a43] rounded-[10px]">
             <h1 className="font-epilogue font-bold sm:text-[25px] text-[18px] leading-[38px] text-white">Start a Campaign</h1>
           </div>
@@ -123,7 +122,8 @@ export default function CreateCampaign() {
                     />
                     
                     <div className="mt-10" />
-                    <button className="btn btn-black w-100">Submit Campaign</button>
+                    {isLoading && <Loader />}
+                    <button disabled={isLoading} className="btn btn-black w-100">Submit Campaign</button>
                   </form>
                 </div>
               </div>
