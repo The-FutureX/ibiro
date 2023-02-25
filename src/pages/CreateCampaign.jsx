@@ -12,10 +12,10 @@ export default function CreateCampaign() {
   const [isLoading, setIsLoading] = useState(false);
   const { createCampaign } = useStateContext();
   const [form, setForm] = useState({
-    name: '',
-    title: '',
+    creator: '',
+    campaignName: '',
     description: '',
-    target: '', 
+    goal: '',
     deadline: '',
     image: ''
   });
@@ -43,8 +43,8 @@ export default function CreateCampaign() {
   return (
     <div>
         <main>
-          <div className="flex justify-center items-center p-[16px] sm:min-w-[380px] bg-[#3a3a43] rounded-[10px]">
-            <h1 className="font-epilogue font-bold sm:text-[25px] text-[18px] leading-[38px] text-white">Start a Campaign</h1>
+          <div className="flex justify-center items-center">
+            <h1 className="font-epilogue font-bold text-white">Start a Campaign</h1>
           </div>
         {/* page-title-area start */}
         <section

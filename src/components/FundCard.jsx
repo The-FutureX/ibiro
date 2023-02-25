@@ -2,6 +2,7 @@ import React from 'react';
 
 import { tagType, thirdweb } from '../assets';
 import { daysLeft,calculateBarPercentage } from '../utils';
+import {Link} from "react-router-dom";
 
 const FundCard = ({ owner, title, description, target, deadline, amountCollected, image, handleClick }) => {
     const remainingDays = daysLeft(deadline);
@@ -12,7 +13,7 @@ const FundCard = ({ owner, title, description, target, deadline, amountCollected
                 <div className="causes__img">
                     <img src={image} alt="" />
                     <div className="causes-heart">
-                        <a href="#" onClick={handleClick}>
+                        <a onClick={handleClick}>
                             <i className="far fa-heart" />
                         </a>
                     </div>
@@ -22,9 +23,9 @@ const FundCard = ({ owner, title, description, target, deadline, amountCollected
                         <a href="#">Category</a>
                     </div>
                     <h4>
-                        <a href="#" onClick={handleClick}>
+                        <Link onClick={handleClick}>
                             {title}
-                        </a>
+                        </Link>
                     </h4>
                     <div className="causes-progress mb-25">
                         <div className="progress">

@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { ethers } from 'ethers';
 
 import { useStateContext } from '../context';
-import { CountBox } from '../components';
+import {CountBox, Loader} from '../components';
 import { calculateBarPercentage, daysLeft } from '../utils';
 import { thirdweb } from '../assets';
 import bg_image from '../assets/img/bg/breadcumb.jpg';
@@ -32,9 +32,14 @@ export default function CampaignDetails() {
   const handleDonate = async () => {
     setIsLoading(true);
 
-    await donate(state.pId, amount);
+    try{
+      await donate(state.pId, amount);
+    }catch (e) {
+      setIsLoading(false);
+      alert("there's an error");
+    }
 
-    navigate('/')
+    navigate('/campaigns')
     setIsLoading(false);
   }
 
@@ -121,16 +126,20 @@ export default function CampaignDetails() {
                         {donators.length > 0 ? donators.map((item, index) => (
                             <div key={`${item.donator}-${index}`} className="flex justify-between items-center gap-4">
                               <p>
-                                {index + 1}. {item.donator} <span style={{color: "red"}}><i className="fa fa-heart"></i></span> {item.donation} Eth
+                                {index + 1}. {item.donator} <span style={{color: "red"}}>
+                                <i className="fa fa-heart"></i></span> {item.donation} Eth
                               </p>
                             </div>
                         )) : (
-                            <p className="font-epilogue font-normal text-[16px] text-[#808191] leading-[26px] text-justify">No backer yet. Be the first one!</p>
+                            <p className="font-epilogue font-normal text-justify">No backer yet. Be the first one!</p>
                         )}
                       </div>
                     </div>
                   </div>
                 </div>
+              </div>
+              <div className="row">
+                {isLoading && <Loader />}
               </div>
               <div className="row">
                 <div className="col-xl-6 col-lg-12">
@@ -142,7 +151,7 @@ export default function CampaignDetails() {
                           value={amount}
                           onChange={(e) => setAmount(e.target.value)}
                       />
-                      <button
+                      <button disabled={isLoading}
                           className="btn"
                           type="button"
                           onClick={handleDonate}
