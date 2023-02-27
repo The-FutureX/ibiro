@@ -5,6 +5,7 @@ import FundCard from './FundCard';
 import { loader } from '../assets';
 
 const DisplayCampaigns = ({ title, isLoading, campaigns }) => {
+    console.log(campaigns)
     const navigate = useNavigate();
 
     /* Encode string to slug */

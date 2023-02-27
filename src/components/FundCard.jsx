@@ -4,7 +4,7 @@ import { tagType, thirdweb } from '../assets';
 import { daysLeft,calculateBarPercentage } from '../utils';
 import {Link} from "react-router-dom";
 
-const FundCard = ({ owner, title, description, target, deadline, amountCollected, image, handleClick }) => {
+const FundCard = ({ owner, title, description, goal, deadline, amountCollected, image, handleClick }) => {
     const remainingDays = daysLeft(deadline);
 
     return (
@@ -31,9 +31,9 @@ const FundCard = ({ owner, title, description, target, deadline, amountCollected
                         <div className="progress">
                             <div
                                 className="progress-bar"
-                                style={{ width: `${calculateBarPercentage(target, amountCollected)}%`, maxWidth: '100%'}}
+                                style={{ width: `${calculateBarPercentage(goal, amountCollected)}%`, maxWidth: '100%'}}
                                 role="progressbar"
-                                aria-valuenow={calculateBarPercentage(target, amountCollected)}
+                                aria-valuenow={calculateBarPercentage(goal, amountCollected)}
                                 aria-valuemin={0}
                                 aria-valuemax={100}
                             />
@@ -44,7 +44,7 @@ const FundCard = ({ owner, title, description, target, deadline, amountCollected
                                 <span>Pledged</span>
                             </div>
                             <div className="count-number f-right text-right">
-                                <h2>{target} Eth</h2>
+                                <h2>{goal} Eth</h2>
                                 <span>Target</span>
                             </div>
                         </div>

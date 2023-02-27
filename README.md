@@ -3,6 +3,9 @@ Website: http://ibiro-app.netlify.com
 <br />
 Smart Contract: https://github.com/The-FutureX/ibiro
 
+## Stacks:
+Solidity, React, bootstrap & Thirdweb
+
 ## NOTE: Use Goerli Network to test & Pinata for image url
 
 ## Building the project
@@ -10,6 +13,10 @@ Smart Contract: https://github.com/The-FutureX/ibiro
 After any changes to the contract, run:
 
 ```bash
+#For testing
+npm run dev
+
+# production
 npm run build
 # or
 yarn build

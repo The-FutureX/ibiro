@@ -12,10 +12,11 @@ export default function CreateCampaign() {
   const [isLoading, setIsLoading] = useState(false);
   const { createCampaign } = useStateContext();
   const [form, setForm] = useState({
-    creator: '',
-    campaignName: '',
+    // creator: '',
+    // name: '',
     description: '',
     goal: '',
+    // created_at: '',
     deadline: '',
     image: ''
   });
@@ -30,9 +31,10 @@ export default function CreateCampaign() {
     checkIfImage(form.image, async (exists) => {
       if(exists) {
         setIsLoading(true)
-        await createCampaign({ ...form, target: ethers.utils.parseUnits(form.target, 18)})
+        const result = await createCampaign({ ...form, goal: ethers.utils.parseUnits(form.goal, 18)})
+        console.log(result)
         setIsLoading(false);
-        navigate('/');
+        navigate('/campaigns');
       } else {
         alert('Provide valid image URL')
         setForm({ ...form, image: '' });
@@ -69,13 +71,13 @@ export default function CreateCampaign() {
               <div className="col-lg-8 offset-lg-2">
                 <div className="basic-login">
                   <form onSubmit={handleSubmit}>
-                    <FormField 
-                      labelName="Your Name *"
-                      placeholder="John Doe"
-                      inputType="text"
-                      value={form.name}
-                      handleChange={(e) => handleFormFieldChange('name', e)}
-                    />
+                    {/*<FormField */}
+                    {/*  labelName="Your Name *"*/}
+                    {/*  placeholder="John Doe"*/}
+                    {/*  inputType="text"*/}
+                    {/*  value={form.name}*/}
+                    {/*  handleChange={(e) => handleFormFieldChange('name', e)}*/}
+                    {/*/>*/}
 
                     <FormField 
                       labelName="Campaign Title *"
@@ -94,7 +96,6 @@ export default function CreateCampaign() {
                     />
 
                     <div>
-                      <img src={money} alt="money" className="w-[40px] h-[40px]"/>
                       <h4 className="font-epilogue font-bold">You will get 100% of the raised amount</h4>
                     </div>
 
@@ -102,8 +103,8 @@ export default function CreateCampaign() {
                       labelName="Goal *"
                       placeholder="ETH 0.50"
                       inputType="text"
-                      value={form.target}
-                      handleChange={(e) => handleFormFieldChange('target', e)}
+                      value={form.goal}
+                      handleChange={(e) => handleFormFieldChange('goal', e)}
                     />
                     <FormField 
                       labelName="End Date *"

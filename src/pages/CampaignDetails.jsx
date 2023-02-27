@@ -11,7 +11,7 @@ import bg_image from '../assets/img/bg/breadcumb.jpg';
 export default function CampaignDetails() {
   const { state } = useLocation();
   const navigate = useNavigate();
-  const { donate, getDonations, contract, address } = useStateContext();
+  const { pledgeNow, getDonations, contract, address } = useStateContext();
 
   const [isLoading, setIsLoading] = useState(false);
   const [amount, setAmount] = useState('');
@@ -29,17 +29,19 @@ export default function CampaignDetails() {
     if(contract) fetchDonators();
   }, [contract, address])
 
-  const handleDonate = async () => {
+  const handlePledge = async () => {
     setIsLoading(true);
 
     try{
-      await donate(state.pId, amount);
+      await pledgeNow(state.pId, amount);
+      alert("Transaction Successful")
     }catch (e) {
+      console.log("There's an error", e)
       setIsLoading(false);
       alert("there's an error");
     }
-
-    navigate('/campaigns')
+    // navigate('/campaigns')
+    window.location.reload(false);
     setIsLoading(false);
   }
 
@@ -91,8 +93,8 @@ export default function CampaignDetails() {
                       <div
                           className="progress-bar"
                           role="progressbar"
-                          style={{ width: `${calculateBarPercentage(state.target, state.amountCollected)}%`, maxWidth: '100%'}}
-                          aria-valuenow={calculateBarPercentage(state.target, state.amountCollected)}
+                          style={{ width: `${calculateBarPercentage(state.goal, state.amountCollected)}%`, maxWidth: '100%'}}
+                          aria-valuenow={calculateBarPercentage(state.goal, state.amountCollected)}
                           aria-valuemin={0}
                           aria-valuemax={100}
                       />
@@ -103,8 +105,8 @@ export default function CampaignDetails() {
                         <span>Pledged</span>
                       </div>
                       <div className="fund-count  ">
-                        <h2>{state.target} Eth</h2>
-                        <span>Target</span>
+                        <h2>{state.goal} Eth</h2>
+                        <span>Goal</span>
                       </div>
                       <div className="fund-count  ">
                         <h2>{donators.length}</h2>
@@ -154,7 +156,7 @@ export default function CampaignDetails() {
                       <button disabled={isLoading}
                           className="btn"
                           type="button"
-                          onClick={handleDonate}
+                          onClick={handlePledge}
                       >
                         back this project <img src="assets/img/icon/arrow.png" alt="" />
                       </button>
