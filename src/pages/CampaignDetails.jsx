@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
-import { ethers } from 'ethers';
 
 import { useStateContext } from '../context';
-import {CountBox, Loader} from '../components';
+import {Loader} from '../components';
 import { calculateBarPercentage, daysLeft } from '../utils';
-import { thirdweb } from '../assets';
 import bg_image from '../assets/img/bg/breadcumb.jpg';
 
 export default function CampaignDetails() {

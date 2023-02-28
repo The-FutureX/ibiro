@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { tagType, thirdweb } from '../assets';
 import { daysLeft,calculateBarPercentage } from '../utils';
 import {Link} from "react-router-dom";
 
