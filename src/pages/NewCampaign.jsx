@@ -6,7 +6,7 @@ import { useStateContext } from '../context';
 import { FormField,Loader } from '../components';
 import { checkIfImage } from '../utils';
 
-export default function CreateCampaign() {
+export default function NewCampaign() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const { createCampaign } = useStateContext();
