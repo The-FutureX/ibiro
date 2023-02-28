@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { useStateContext } from '../context';
@@ -9,12 +9,10 @@ import logo from '/src/logo.png';
 
 export default function Header() {
     const navigate = useNavigate();
-    // const [isActive, setIsActive] = useState('dashboard');
-    // const [toggleDrawer, setToggleDrawer] = useState(false);
-    const { connect, address } = useStateContext();
+    const { address } = useStateContext();
     const profile = () => {
         if (address){
-            return <li><Link to="profile">Profile</Link></li>
+            return <li><Link to="dashboard">My Campaigns</Link></li>
         }
     }
     return (

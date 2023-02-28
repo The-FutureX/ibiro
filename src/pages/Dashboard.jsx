@@ -7,7 +7,7 @@ import { useStateContext } from '../context'
 import bg_image from '../assets/img/bg/breadcumb.jpg';
 import TitleNavigator from "../components/TitleNavigator";
 
-export default function Profile() {
+export default function Dashboard() {
     const [isLoading, setIsLoading] = useState(false);
     const [campaigns, setCampaigns] = useState([]);
 

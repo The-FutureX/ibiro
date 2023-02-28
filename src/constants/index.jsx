@@ -8,7 +8,7 @@ export const navlinks = [
     link: '/create-campaign',
   },
   {
-    name: 'profile',
-    link: '/profile',
+    name: 'dashboard',
+    link: '/dashboard',
   }
 ];
