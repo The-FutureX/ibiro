@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import FundCard from './FundCard';
+import CampaignCard from './CampaignCard';
 import { loader } from '../assets';
 
 const DisplayCampaigns = ({ title, isLoading, campaigns }) => {
@@ -44,7 +44,7 @@ const DisplayCampaigns = ({ title, isLoading, campaigns }) => {
                         </p>
                     )}
 
-                    {!isLoading && campaigns.length > 0 && campaigns.map((campaign) => <FundCard
+                    {!isLoading && campaigns.length > 0 && campaigns.map((campaign) => <CampaignCard
                         key={campaign.pId}
                         {...campaign}
                         handleClick={() => handleNavigate(campaign)}

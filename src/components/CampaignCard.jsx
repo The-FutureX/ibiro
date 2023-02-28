@@ -3,7 +3,7 @@ import React from 'react';
 import { daysLeft,calculateBarPercentage } from '../utils';
 import {Link} from "react-router-dom";
 
-const FundCard = ({ owner, title, description, goal, deadline, amountCollected, image, handleClick }) => {
+const CampaignCard = ({ owner, title, description, goal, deadline, amountCollected, image, handleClick }) => {
     const remainingDays = daysLeft(deadline);
 
     return (
@@ -59,4 +59,4 @@ const FundCard = ({ owner, title, description, goal, deadline, amountCollected, 
     )
 }
 
-export default FundCard
+export default CampaignCard
