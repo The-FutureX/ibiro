@@ -29,19 +29,23 @@ export default function CampaignDetails() {
     if(contract) fetchDonators();
   }, [contract, address])
 
+  function refreshPage() {
+    window.location.reload();
+  }
+
   const handlePledge = async () => {
     setIsLoading(true);
 
     try{
       await pledgeNow(state.pId, amount);
       alert("Transaction Successful")
+      // refreshPage();
     }catch (e) {
       console.log("There's an error", e)
       setIsLoading(false);
       alert("there's an error");
     }
-    // navigate('/campaigns')
-    window.location.reload(false);
+    navigate('/campaigns')
     setIsLoading(false);
   }
 
