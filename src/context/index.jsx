@@ -13,9 +13,9 @@ export const StateContextProvider = ({ children }) => {
   // const { contract } = useContract("0x674f45cF9D2cE6018927E10cD73121FD7D3881c2");
   // const { contract } = useContract("0xB90b7A201919303AF2709892088137cb6D8d37e2");
   // const { contract } = useContract("0x9302b297C301610e4c880267A868C99B1FC8Bdd0");
-  const { contract } = useContract("0xD0CD26A627D01ea317B0DC52735E8a21279Ca5cD");
+  // const { contract } = useContract("0xD0CD26A627D01ea317B0DC52735E8a21279Ca5cD");
+  const { contract } = useContract("0xe54910b3921AD597078ad35b2B25495b65Db1375");
   const { mutateAsync: newCampaign, isLoading } = useContractWrite(contract, "newCampaign")
-  // const { mutateAsync: createCampaign, isLoading } = useContractWrite(contract, "createCampaign")
 
   const address = useAddress();
   const connect = useMetamask();
@@ -63,6 +63,21 @@ export const StateContextProvider = ({ children }) => {
   }
 
   const pledgeNow = async (pId, amount) => {
+    try {
+      //
+    } catch (err) {
+      if (err) {
+
+        var errorMessageInJson = JSON.parse(
+            err.message.slice(58, err.message.length - 2)
+        );
+
+        var errorMessageToShow = errorMessageInJson.data.data[Object.keys(errorMessageInJson.data.data)[0]].reason;
+
+        alert(errorMessageToShow);
+        return;
+      }
+    }
     const data = await contract.call('pledge', pId, { value: ethers.utils.parseEther(amount)});
 
     return data;

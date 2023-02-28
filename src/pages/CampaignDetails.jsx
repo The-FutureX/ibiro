@@ -5,6 +5,7 @@ import { useStateContext } from '../context';
 import {Loader} from '../components';
 import bg_image from '../assets/img/bg/breadcumb.jpg';
 import { calculateBarPercentage, daysLeft } from '../utils';
+import {ethers} from "ethers";
 
 export default function CampaignDetails() {
   const { state } = useLocation();
@@ -34,16 +35,27 @@ export default function CampaignDetails() {
   const handlePledge = async () => {
     setIsLoading(true);
 
-    try{
-      await pledgeNow(state.pId, amount);
-      alert("Transaction Successful")
-      // refreshPage();
-    }catch (e) {
-      console.log("There's an error", e)
-      setIsLoading(false);
-      alert("there's an error");
+    if (!address){
+      alert("No wallet Connected");
+      window.location.reload();
+    }else {
+      try{
+        await pledgeNow(state.pId, amount);
+        alert("Transaction Successful")
+        // refreshPage();
+        navigate('/campaigns');
+      }catch (e) {
+        let error = JSON.parse(
+            JSON.stringify(e.message)
+        );
+        if (error.indexOf('Internal JSON-RPC error.') > -1) {
+          alert("Error here")
+        }
+        console.log("There's an error", e)
+        setIsLoading(false);
+      }
     }
-    navigate('/campaigns')
+    // navigate('/campaigns')
     setIsLoading(false);
   }
 
