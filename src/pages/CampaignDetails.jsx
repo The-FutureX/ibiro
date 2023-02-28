@@ -3,8 +3,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import { useStateContext } from '../context';
 import {Loader} from '../components';
-import { calculateBarPercentage, daysLeft } from '../utils';
 import bg_image from '../assets/img/bg/breadcumb.jpg';
+import { calculateBarPercentage, daysLeft } from '../utils';
 
 export default function CampaignDetails() {
   const { state } = useLocation();
@@ -13,18 +13,18 @@ export default function CampaignDetails() {
 
   const [isLoading, setIsLoading] = useState(false);
   const [amount, setAmount] = useState('');
-  const [donators, setDonators] = useState([]);
+  const [pledgers, setPledgers] = useState([]);
 
   const remainingDays = daysLeft(state.deadline);
 
-  const fetchDonators = async () => {
+  const fetchPledgers = async () => {
     const data = await getDonations(state.pId);
 
-    setDonators(data);
+    setPledgers(data);
   }
   const shareUrl = window.location.href;
   useEffect(() => {
-    if(contract) fetchDonators();
+    if(contract) fetchPledgers();
   }, [contract, address])
 
   function refreshPage() {
@@ -111,7 +111,7 @@ export default function CampaignDetails() {
                         <span>Goal</span>
                       </div>
                       <div className="fund-count  ">
-                        <h2>{donators.length}</h2>
+                        <h2>{pledgers.length}</h2>
                         <span>Backers</span>
                       </div>
                       <div className="fund-count  ">
@@ -127,7 +127,7 @@ export default function CampaignDetails() {
                       <h4 className="text-title uppercase">Backers</h4>
 
                       <div className="gap-4">
-                        {donators.length > 0 ? donators.map((item, index) => (
+                        {pledgers.length > 0 ? pledgers.map((item, index) => (
                             <div key={`${item.donator}-${index}`} className="flex justify-between items-center gap-4">
                               <p>
                                 {index + 1}. {item.donator} <span style={{color: "red"}}>
