@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { ConnectWallet } from "@thirdweb-dev/react";
 
 import { Header, Footer } from './components';
 import { Campaigns, CampaignDetails, NewCampaign, Home, Profile } from './pages';

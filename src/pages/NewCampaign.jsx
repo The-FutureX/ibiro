@@ -2,11 +2,13 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { ethers } from 'ethers';
 
+import {useAddress} from '@thirdweb-dev/react';
 import { useStateContext } from '../context';
 import { FormField,Loader } from '../components';
 import { checkIfImage } from '../utils';
 
 export default function NewCampaign() {
+  const address = useAddress();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const { createCampaign } = useStateContext();
@@ -28,15 +30,19 @@ export default function NewCampaign() {
     e.preventDefault();
 
     checkIfImage(form.image, async (exists) => {
-      if(exists) {
-        setIsLoading(true)
-        const result = await createCampaign({ ...form, goal: ethers.utils.parseUnits(form.goal, 18)})
-        console.log(result)
-        setIsLoading(false);
-        navigate('/campaigns');
-      } else {
-        alert('Provide valid image URL')
-        setForm({ ...form, image: '' });
+      if (!address){
+        alert("No wallet Connected");
+        window.location.reload();
+      }else {
+        if(exists) {
+          setIsLoading(true)
+          await createCampaign({ ...form, goal: ethers.utils.parseUnits(form.goal, 18)})
+          setIsLoading(false);
+          navigate('/campaigns');
+        } else {
+          alert('Provide valid image URL')
+          setForm({ ...form, image: '' });
+        }
       }
     })
   }
